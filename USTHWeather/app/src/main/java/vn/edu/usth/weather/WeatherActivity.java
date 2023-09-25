@@ -1,19 +1,39 @@
 package vn.edu.usth.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.util.Log;
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG = "WeatherActivity";
+
+//    private void createFragment(Fragment fragment){
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.frameLayout,fragment);
+//        fragmentTransaction.commit();
+//    }
+    ForecastFragment forecastFragment = new ForecastFragment();
+
+    ForecastFragment forecastFragment2 = new ForecastFragment();
+
+    ForecastFragment forecastFragment3 = new ForecastFragment();
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        ForecastFragment f = new ForecastFragment();
-//        getSupportFragmentManager().beginTransaction().add(
-//                R.id.activity_weather, f).commit()
+        fragmentTransaction.add(R.id.linearLayout,forecastFragment);
+        fragmentTransaction.add(R.id.linearLayout,forecastFragment2);
+        fragmentTransaction.add(R.id.linearLayout,forecastFragment3);
+        fragmentTransaction.commit();
+//        createFragment(new ForecastFragment());
 
         Log.i(TAG, "=====App created=====");
     }
